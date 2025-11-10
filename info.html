@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Government Associate College for Women Marghzar</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f3f3f3; margin: 0; padding: 0; }
+        header { background: darkblue; color: white; padding: 20px; text-align: center; }
+        #content { padding: 20px; background: white; margin: 40px auto; max-width: 700px; 
+                   box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; text-align: center; }
+        select, button { padding: 10px; margin: 10px; border: none; border-radius: 5px; cursor: pointer; }
+        select { background: #f0f0f0; }
+        button { background: darkblue; color: white; }
+        button:hover { background: navy; }
+        .semester-btns { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+        h3 { color: darkblue; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Government Associate College for Women Marghzar</h1>
+    <p><em>She Rises, The Nation Soars.</em></p>
+</header>
+
+<div id="content">
+    <h3>Select Program</h3>
+    <select id="program" onchange="showProgramFields()">
+        <option value="">--Select--</option>
+        <option value="BS">BS</option>
+        <option value="ADP">ADP</option>
+    </select>
+    <div id="programFields"></div>
+    <div id="result"></div>
+</div>
+
+<script>
+function showProgramFields() {
+    const program = document.getElementById("program").value;
+    const fieldDiv = document.getElementById("programFields");
+    const resultDiv = document.getElementById("result");
+    resultDiv.innerHTML = "";
+
+    if (program === "BS") {
+        fieldDiv.innerHTML = `
+            <h3>Select BS Semester</h3>
+            <div class="semester-btns">
+                <button onclick="showStudents('BS', 1)">1st Semester</button>
+                <button onclick="showStudents('BS', 3)">3rd Semester</button>
+                <button onclick="showStudents('BS', 5)">5th Semester</button>
+                <button onclick="showStudents('BS', 7)">7th Semester</button>
+            </div>
+        `;
+    } 
+    else if (program === "ADP") {
+        fieldDiv.innerHTML = `
+            <h3>Select ADP Semester</h3>
+            <div class="semester-btns">
+                <button onclick="showStudents('ADP', 1)">1st Semester</button>
+                <button onclick="showStudents('ADP', 3)">3rd Semester</button>
+            </div>
+        `;
+    } 
+    else {
+        fieldDiv.innerHTML = "";
+    }
+}
+
+function showStudents(program, semester) {
+    let total = 0;
+
+    if (program === "BS") {
+        if (semester === 1) total = 10;
+        else if (semester === 3) total = 4;
+        else if (semester === 5) total = 5;
+        else if (semester === 7) total = 4;
+    } 
+    else if (program === "ADP") {
+        if (semester === 1) total = 25;
+        else if (semester === 3) total = 44;
+    }
+
+    document.getElementById("result").innerHTML = `
+        <h3>${program} - ${semester} Semester</h3>
+        <p>Total Students: <b>${total}</b></p>
+    `;
+}
+</script>
+
+</body>
+</html>
+
